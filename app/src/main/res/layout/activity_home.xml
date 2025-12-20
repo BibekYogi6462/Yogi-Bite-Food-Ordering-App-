@@ -1,13 +1,500 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity"
-    android:background="@color/teal_200"
-    >
+    android:orientation="vertical"
+    android:background="@drawable/bg_gradient_home"
+    tools:context=".HomeActivity">
 
+    <!-- App Header with Logo and Cart -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/header_gradient">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/logo"
+            android:layout_marginEnd="15dp" />
+
+        <TextView
+            android:id="@+id/titleHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="YOGI EAT"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.2"
+            android:shadowColor="@color/shadow_dark"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"
+            android:fontFamily="sans-serif-black" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="@color/white">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_cart"
+                app:tint="@color/red_primary" />
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <!-- User Greeting -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello, Foodie! 🍕"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingStart="25dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="5dp"
+        android:shadowColor="@color/shadow_dark"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2" />
+
+    <!-- Search Bar -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="25dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_search"
+                android:layout_marginEnd="10dp"
+                app:tint="@color/red_primary" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Search food, restaurants..."
+                android:textColor="@color/text_gray"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_mic"
+                android:layout_marginStart="10dp"
+                app:tint="@color/red_light" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Grid Layout for Cards -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp"
+        android:columnCount="2"
+        android:rowCount="3"
+        android:alignmentMode="alignBounds"
+        android:columnOrderPreserved="false"
+        android:useDefaultMargins="true">
+
+        <!-- Card 1: Order Food -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/orderFood"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="@color/card_orange">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/card_gradient_orange"
+                android:padding="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:cardCornerRadius="35dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_food"
+                        app:tint="@color/card_orange" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order Food"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"
+                    android:shadowColor="@color/shadow_dark"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quick delivery"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:alpha="0.9"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Card 2: My Orders -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/orderDetails"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="@color/card_blue">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/card_gradient_blue"
+                android:padding="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:cardCornerRadius="35dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_orders"
+                        app:tint="@color/card_blue" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Orders"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"
+                    android:shadowColor="@color/shadow_dark"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Track and history"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:alpha="0.9"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Card 3: Find Restaurant -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/findRestaurant"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="@color/card_green">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/card_gradient_green"
+                android:padding="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:cardCornerRadius="35dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_restaurant"
+                        app:tint="@color/card_green" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Restaurants"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"
+                    android:shadowColor="@color/shadow_dark"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nearby places"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:alpha="0.9"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Card 4: Offers & Deals -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/offer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="@color/card_purple">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/card_gradient_purple"
+                android:padding="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:cardCornerRadius="35dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_offers"
+                        app:tint="@color/card_purple" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Offers"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"
+                    android:shadowColor="@color/shadow_dark"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Deals and discounts"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:alpha="0.9"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Card 5: Help & Support -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/helpSupport"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="@color/card_teal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/card_gradient_teal"
+                android:padding="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:cardCornerRadius="35dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_support"
+                        app:tint="@color/card_teal" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Support"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"
+                    android:shadowColor="@color/shadow_dark"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Help center"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:alpha="0.9"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Card 6: Logout -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardExit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="@color/card_red">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/card_gradient_red"
+                android:padding="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:cardCornerRadius="35dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_logout"
+                        app:tint="@color/card_red" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Logout"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"
+                    android:shadowColor="@color/shadow_dark"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sign out"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:alpha="0.9"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </GridLayout>
+
+</LinearLayout>

@@ -8,13 +8,13 @@
 
 
     <!-- Primary Red Background -->
-    <color name="red_primary">#E53935</color>
+<!--    <color name="red_primary">#E53935</color>-->
     <color name="red_dark">#C62828</color>
-    <color name="red_light">#FF6F61</color>
+<!--    <color name="red_light">#FF6F61</color>-->
 
     <!-- Text Colors -->
     <color name="text_white">#FFFFFF</color>
-    <color name="text_cream">#FFF3E0</color>
+<!--    <color name="text_cream">#FFF3E0</color>-->
 
     <!-- Accent (Logo Match) -->
     <color name="accent_gold">#FFD166</color>
@@ -22,5 +22,21 @@
 
     <!-- Default Colors (Keep if needed) -->
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+<!--    <color name="white">#FFFFFFFF</color>-->
+
+    <!-- Background Gradients -->
+    <color name="red_primary">#FF6B6B</color>
+    <color name="red_light">#FF8E8E</color>
+    <color name="text_cream">#FFF9F1</color>
+    <color name="shadow_dark">#33000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="text_gray">#888888</color>
+
+    <!-- Card Colors -->
+    <color name="card_orange">#FFA726</color>
+    <color name="card_blue">#42A5F5</color>
+    <color name="card_green">#66BB6A</color>
+    <color name="card_purple">#AB47BC</color>
+    <color name="card_teal">#26A69A</color>
+    <color name="card_red">#EF5350</color>
 </resources>
