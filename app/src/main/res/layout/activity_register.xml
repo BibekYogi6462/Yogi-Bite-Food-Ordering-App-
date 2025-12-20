@@ -152,7 +152,7 @@
 
     <!-- Already have an account link -->
     <TextView
-        android:id="@+id/textViewLogin"
+        android:id="@+id/textViewExistingUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,9 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOrderingSystemYogiByte">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".HomeActivity"
             android:exported="false" />
-        <!-- Splash Activity (LAUNCHER - shows first) -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" /> <!-- Splash Activity (LAUNCHER - shows first) -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
