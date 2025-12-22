@@ -37,7 +37,9 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = edEmail.getText().toString().trim();
                 String password = edPassword.getText().toString();
                 String confirm = edConfirm.getText().toString();
-                Database db = new Database(getApplicationContext(), "yogieat", null, 1);
+
+                // FIXED: Use the new Database constructor with only Context parameter
+                Database db = new Database(getApplicationContext());
 
                 // Check if any field is empty
                 if (username.isEmpty() || email.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
@@ -71,14 +73,36 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                db.register(username, email, password);
-                // All validations passed
-                Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
+                // Check if username already exists
+                if (db.checkUsernameExists(username)) {
+                    Toast.makeText(getApplicationContext(), "Username already exists. Please choose a different username.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                // TODO: Add your registration logic here (API call, database insertion, etc.)
-                // After successful registration, you can redirect to login or main activity
-                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                // finish();
+                // Register the user - the new register() method returns user ID
+                long userId = db.register(username, email, password);
+
+                if (userId != -1) {
+                    Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
+
+                    // Auto-login after registration
+                    // Save user info to SharedPreferences
+                    android.content.SharedPreferences sharedpreferences = getSharedPreferences("shared_prefs", MODE_PRIVATE);
+                    android.content.SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString("username", username);
+                    editor.putInt("user_id", (int) userId);
+                    editor.putBoolean("is_logged_in", true);
+                    editor.apply();
+
+                    // Go to HomeActivity with user ID
+                    Toast.makeText(getApplicationContext(), "Registration Success", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    intent.putExtra("USER_ID", (int) userId);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Registration failed. Please try again.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -115,6 +139,4 @@ public class RegisterActivity extends AppCompatActivity {
         String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
         return password.matches(passwordPattern);
     }
-
-
 }

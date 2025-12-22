@@ -84,6 +84,8 @@
                 android:layout_marginStart="10dp"
                 app:tint="#FF6B6B" />
         </LinearLayout>
+
+
     </androidx.cardview.widget.CardView>
 
     <!-- Scroll View for Restaurants -->
@@ -101,6 +103,7 @@
 
             <!-- Restaurant Card 1 (Correct) -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/res1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14dp"
@@ -240,6 +243,7 @@
 
             <!-- Restaurant Card 2 (Corrected) -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/res2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14dp"
@@ -379,6 +383,7 @@
 
             <!-- Restaurant Card 3 (Corrected) -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/res3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14dp"
@@ -518,6 +523,7 @@
 
             <!-- Restaurant Card 4 (Corrected) -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/res4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14dp"

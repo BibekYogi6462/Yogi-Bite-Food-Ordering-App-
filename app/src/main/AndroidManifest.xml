@@ -6,44 +6,43 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOrderingSystemYogiByte"
         tools:ignore="DuplicateActivity">
-
-        <!-- Splash Activity (LAUNCHER - shows first) -->
+        <activity
+            android:name=".ViewBookingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BookSeatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RestaurantDetailsActivity"
+            android:exported="false" /> <!-- Splash Activity (LAUNCHER - shows first) -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Login Activity -->
+        </activity> <!-- Login Activity -->
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
-
-        <!-- Register Activity -->
+            android:exported="false" /> <!-- Register Activity -->
         <activity
             android:name=".RegisterActivity"
-            android:exported="false" />
-
-        <!-- Home Activity -->
+            android:exported="false" /> <!-- Home Activity -->
         <activity
             android:name=".HomeActivity"
-            android:exported="false" />
-
-        <!-- Find Restaurant Activity -->
+            android:exported="false" /> <!-- Find Restaurant Activity -->
         <activity
             android:name=".FindRestaurantActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>
