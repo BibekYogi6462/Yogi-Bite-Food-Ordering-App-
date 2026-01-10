@@ -39,4 +39,8 @@
     <color name="card_purple">#AB47BC</color>
     <color name="card_teal">#26A69A</color>
     <color name="card_red">#EF5350</color>
+
+
+    <color name="gray_light">#F5F5F5</color>
+
 </resources>

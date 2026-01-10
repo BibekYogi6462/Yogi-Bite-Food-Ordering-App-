@@ -21,6 +21,14 @@ public class HomeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
+        // In onCreate method of HomeActivity.java
+        CardView orderFoodCard = findViewById(R.id.orderFood);
+        orderFoodCard.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, OrderFoodActivity.class);
+            startActivity(intent);
+        });
+
+
         // FIRST: Get user ID from intent (passed from LoginActivity)
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("USER_ID")) {
@@ -97,3 +105,4 @@ public class HomeActivity extends AppCompatActivity {
         userId = sharedpreferences.getInt("user_id", -1);
     }
 }
+

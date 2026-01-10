@@ -13,6 +13,16 @@
         android:theme="@style/Theme.FoodOrderingSystemYogiByte"
         tools:ignore="DuplicateActivity">
         <activity
+            android:name=".CheckoutActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FoodOrderingSystemYogiByte" />
+        <activity
+            android:name=".OrderFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrderFoodActivity"
+            android:exported="false" />
+        <activity
             android:name=".ViewBookingsActivity"
             android:exported="false" />
         <activity
