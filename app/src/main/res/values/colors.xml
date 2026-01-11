@@ -43,4 +43,6 @@
 
     <color name="gray_light">#F5F5F5</color>
 
+    <color name="text_dark">#212121</color>
+
 </resources>

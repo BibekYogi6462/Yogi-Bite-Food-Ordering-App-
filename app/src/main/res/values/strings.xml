@@ -42,4 +42,28 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="help_support">Help &amp; Support</string>
+    <string name="back_button">Back button</string>
+    <string name="support_icon">Support icon</string>
+    <string name="user_icon">User icon</string>
+    <string name="need_help">Need Help?</string>
+    <string name="default_email">user@example.com</string>
+    <string name="call_icon">Call icon</string>
+    <string name="call_support">Call Support</string>
+    <string name="available_247">24/7 Available</string>
+    <string name="email_icon">Email icon</string>
+    <string name="email_support">Email Support</string>
+    <string name="response_24h">Response in 24h</string>
+    <string name="chat_icon">Chat icon</string>
+    <string name="live_chat">Live Chat</string>
+    <string name="instant_support">Instant support</string>
+    <string name="faq_icon">FAQ icon</string>
+    <string name="faq">FAQ</string>
+    <string name="common_questions">Common questions</string>
+    <string name="rate_icon">Rate icon</string>
+    <string name="rate_app">Rate App</string>
+    <string name="share_feedback">Share feedback</string>
+    <string name="info_icon">Info icon</string>
+    <string name="about_app">About App</string>
+    <string name="version_info">Version &amp; info</string>
 </resources>

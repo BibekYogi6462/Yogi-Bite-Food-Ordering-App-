@@ -2,6 +2,7 @@ package com.bca6th.bibekyogi.foodorderingsystemyogibyte;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +25,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private ImageView backButton;
 
     private double cartTotal = 0.0;
-    private double deliveryFee = 2.99;
+    private final double deliveryFee = 2.99;
     private double grandTotal = 0.0;
 
     @Override
@@ -65,17 +66,12 @@ public class CheckoutActivity extends AppCompatActivity {
                 placeOrder();
             }
         });
-
-        // Update payment method selection
-        paymentMethodGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            // You can add logic for different payment methods
-        });
     }
 
     private void updateUI() {
-        totalAmountTextView.setText(String.format("$%.2f", cartTotal));
-        deliveryFeeTextView.setText(String.format("$%.2f", deliveryFee));
-        grandTotalTextView.setText(String.format("$%.2f", grandTotal));
+        totalAmountTextView.setText(String.format(Locale.getDefault(), "$%.2f", cartTotal));
+        deliveryFeeTextView.setText(String.format(Locale.getDefault(), "$%.2f", deliveryFee));
+        grandTotalTextView.setText(String.format(Locale.getDefault(), "$%.2f", grandTotal));
     }
 
     private boolean validateInputs() {
@@ -106,6 +102,7 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void placeOrder() {
+        Database db = null;
         try {
             // Get user details
             String name = edtName.getText().toString().trim();
@@ -122,31 +119,28 @@ public class CheckoutActivity extends AppCompatActivity {
             String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
             String currentTime = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
 
-            // Here you would typically:
-            // 1. Get current user ID from SharedPreferences or intent
-            // 2. Save order to database
-            // 3. Clear cart
-            // 4. Navigate to order confirmation
-
-            // For now, we'll simulate order placement
-            Database db = new Database(this);
-
             // Get user ID (you should pass this from previous activity or get from SharedPreferences)
-            int userId = getUserId(); // Implement this method
+            int userId = getUserId();
 
             if (userId != -1) {
-                // Create order in database
-                long orderId = db.createNewOrder(userId, currentDate, currentTime,
+                db = new Database(this);
+
+                // Create order in database using the correct method name
+                long orderId = db.createOrder(userId, currentDate, currentTime,
                         grandTotal, address, paymentMethod, phone);
 
                 if (orderId != -1) {
                     // Order created successfully
                     Toast.makeText(this, "Order placed successfully!", Toast.LENGTH_SHORT).show();
 
-                    // Navigate to order confirmation
-                    Intent intent = new Intent(this, OrderConfirmationActivity.class);
+                    // TODO: Here you need to add the cart items to order_items table
+                    // using db.addOrderItem(orderId, foodName, quantity, price);
+
+                    // Navigate to confirmation or back to home
+                    Intent intent = new Intent(this, HomeActivity.class);
                     intent.putExtra("order_id", orderId);
                     intent.putExtra("total_amount", grandTotal);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish(); // Close checkout activity
                 } else {
@@ -154,18 +148,24 @@ public class CheckoutActivity extends AppCompatActivity {
                 }
             } else {
                 Toast.makeText(this, "User not logged in. Please login again.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("CheckoutActivity", "Error placing order", e);
             Toast.makeText(this, "Error placing order: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        } finally {
+            if (db != null) {
+                db.close();
+            }
         }
     }
 
     private int getUserId() {
         // Implement this method to get current user ID
-        // You can use SharedPreferences or pass from previous activity
-        // For now, return a dummy value
-        return 1; // Replace with actual user ID retrieval
+        // You can use SharedPreferences
+        // For now, return a dummy value or get from intent
+        return getIntent().getIntExtra("user_id", 1); // Default to 1 for testing
     }
 }

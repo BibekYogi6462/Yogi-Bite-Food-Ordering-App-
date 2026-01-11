@@ -21,36 +21,33 @@ public class HomeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
-        // In onCreate method of HomeActivity.java
-        CardView orderFoodCard = findViewById(R.id.orderFood);
-        orderFoodCard.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, OrderFoodActivity.class);
-            startActivity(intent);
-        });
-
-
-        // FIRST: Get user ID from intent (passed from LoginActivity)
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("USER_ID")) {
-            userId = intent.getIntExtra("USER_ID", -1);
+        // Get user ID from intent (passed from LoginActivity)
+        Intent receivedIntent = getIntent(); // Renamed to avoid conflict
+        if (receivedIntent != null && receivedIntent.hasExtra("USER_ID")) {
+            userId = receivedIntent.getIntExtra("USER_ID", -1);
         }
 
         SharedPreferences sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
 
-        // SECOND: If no user ID from intent, try to get from SharedPreferences
+        // If no user ID from intent, try to get from SharedPreferences
         if (userId == -1) {
             userId = sharedpreferences.getInt("user_id", -1);
         }
 
-        // THIRD: Save user ID to SharedPreferences if not already saved
+        // Save user ID to SharedPreferences if not already saved
         SharedPreferences.Editor editor = sharedpreferences.edit();
         if (!sharedpreferences.contains("user_id") && userId != -1) {
             editor.putInt("user_id", userId);
         }
         editor.apply();
 
+        // Initialize all cards
         CardView exit = findViewById(R.id.cardExit);
         CardView findRestaurant = findViewById(R.id.findRestaurant);
+        CardView orderFoodCard = findViewById(R.id.orderFood);
+        CardView myOrdersCard = findViewById(R.id.orderDetails);
+        CardView offersCard = findViewById(R.id.offer);
+        CardView supportCard = findViewById(R.id.helpSupport);
 
         // Check if this is the FIRST TIME opening HomeActivity after login
         boolean firstTimeHome = sharedpreferences.getBoolean("first_time_home", true);
@@ -69,6 +66,62 @@ public class HomeActivity extends AppCompatActivity {
             editor.apply();
         }
 
+        // ========== CARD CLICK LISTENERS ==========
+
+        // Order Food Card
+        orderFoodCard.setOnClickListener(v -> {
+            if (userId == -1) {
+                Toast.makeText(HomeActivity.this, "Please login again", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                finish();
+            } else {
+                Intent foodIntent = new Intent(HomeActivity.this, OrderFoodActivity.class);
+                foodIntent.putExtra("USER_ID", userId);
+                startActivity(foodIntent);
+            }
+        });
+
+        // My Orders Card - THIS WAS MISSING!
+        myOrdersCard.setOnClickListener(v -> {
+            if (userId == -1) {
+                Toast.makeText(HomeActivity.this, "Please login again", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                finish();
+            } else {
+                Intent ordersIntent = new Intent(HomeActivity.this, MyOrdersActivity.class);
+                ordersIntent.putExtra("USER_ID", userId); // Pass user ID
+                startActivity(ordersIntent);
+            }
+        });
+
+        // Find Restaurant Card
+        findRestaurant.setOnClickListener(v -> {
+            if (userId == -1) {
+                Toast.makeText(HomeActivity.this, "Please login again", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                finish();
+            } else {
+                Intent restaurantIntent = new Intent(HomeActivity.this, FindRestaurantActivity.class);
+                restaurantIntent.putExtra("USER_ID", userId);
+                startActivity(restaurantIntent);
+            }
+        });
+
+        // Offers Card - Fixed variable name conflict
+        offersCard.setOnClickListener(v -> {
+            Intent offersIntent = new Intent(HomeActivity.this, OffersActivity.class);
+            startActivity(offersIntent);
+// Use default animation
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        });
+
+        // Support Card
+        // In HomeActivity.java, update the support card click listener:
+        supportCard.setOnClickListener(v -> {
+            Intent supportIntent = new Intent(HomeActivity.this, SupportActivity.class);
+            startActivity(supportIntent);
+        });
+
         // Exit Button
         exit.setOnClickListener(v -> {
             SharedPreferences.Editor logoutEditor = sharedpreferences.edit();
@@ -78,22 +131,6 @@ public class HomeActivity extends AppCompatActivity {
 
             startActivity(new Intent(HomeActivity.this, LoginActivity.class));
             finish();
-        });
-
-        // Find Restaurant Button - PASS USER ID
-        findRestaurant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (userId == -1) {
-                    Toast.makeText(HomeActivity.this, "Please login again", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-                    finish();
-                } else {
-                    Intent restaurantIntent = new Intent(HomeActivity.this, FindRestaurantActivity.class);
-                    restaurantIntent.putExtra("USER_ID", userId);
-                    startActivity(restaurantIntent);
-                }
-            }
         });
     }
 
@@ -105,4 +142,3 @@ public class HomeActivity extends AppCompatActivity {
         userId = sharedpreferences.getInt("user_id", -1);
     }
 }
-
